@@ -1,2 +1,3 @@
 # CORVET-CASTEM
-CASTEM-TWIN
+
+Gibian code to compute the first three eigenmode of CORVET
