@@ -1,0 +1,244 @@
+TEMPS;
+
+* Vibration study of symplified model of Corvet
+
+* Parameters
+
+OPTI 'DIME' 3 'ELEM' CU20 TRAC OPENGL;
+
+* Geometry
+
+RINT = 124.27435422777501;
+REXT = 132.;
+EPLANG = 5.;
+
+LEPSILON = 0.0001;
+
+ND01 = 7;
+ND08 = 3;
+ND15 = 3;
+NP15P22 = 3;
+NP02P03 = 3;
+NP03P04 = 30;
+NP04P05 = 3;
+NP05P06 = 3;
+NP06P07 = 3;
+NV01 = 5;
+NV02 = 30;
+NV03 = 5;
+NV04 = 2;
+NV05 = 2;
+NV06 = 2;
+
+P01 = 0.                                     0.                                     0.;
+P02 = 20.                                    0.                                     0.;
+P03 = 40.                                    0.                                     0.;
+P04 = 90.                                    0.                                     0.;
+P05 = 110.                                   0.                                     0.;
+P06 = RINT                                   0.                                     0.;
+P07 = REXT                                   0.                                     0.;
+P08 = 0.                                     EPLANG                                 0.;
+P09 = 20.                                    EPLANG                                 0.;
+P10 = 40.                                    EPLANG                                 0.;
+P11 = 90.                                    EPLANG                                 0.;
+P12 = 110.                                   EPLANG                                 0.;
+P13 = (((RINT**2) - (EPLANG**2))**0.5)       EPLANG                                 0.;
+P14 = (((REXT**2) - (EPLANG**2))**0.5)       EPLANG                                 0.;
+P15 = 0.                                     40.                                    0.;
+P16 = 20.                                    40.                                    0.;
+P17 = 40.                                    40.                                    0.;
+P18 = 90.                                    40.                                    0.;
+P19 = 110.                                   40.                                    0.;
+P20 = (((RINT**2) - 1600.)**0.5)             40.                                    0.;
+P21 = (((REXT**2) - 1600.)**0.5)             40.                                    0.;
+P22 = 0.                                     60.                                    0.;
+P23 = 20.                                    60.                                    0.;
+P24 = 0.                                     80.                                    0.;
+P25 = (40./(2**0.5))                         (40.+(40./(2**0.5)))                   0.;
+P26 = 0.                                     (((90.**2)+(40.**2))**0.5)             0.;
+P27 = 0.                                     (((110.**2)+(40.**2))**0.5)            0.;
+P28 = 0.                                     RINT                                   0.;
+P29 = 0.                                     REXT                                   0.;
+P30 = ((((90.**2)+(40.**2))**0.5)/(2**0.5))  ((((90.**2)+(40.**2))**0.5)/(2**0.5))  0.;
+P31 = ((((110.**2)+(40.**2))**0.5)/(2**0.5)) ((((110.**2)+(40.**2))**0.5)/(2**0.5)) 0.;
+P32 = (RINT/(2**0.5))                        (RINT/(2**0.5))                        0.;
+P33 = (REXT/(2**0.5))                        (REXT/(2**0.5))                        0.;
+
+P34 = 0. 0. 15.;
+P35 = 0. 0. 50.;
+P36 = 0. 0. 65.;
+P37 = 0. 0. 20.;
+P38 = 0. 0. 80.;
+P39 = 0. 0. 476.;
+P40 = 0. 0. 100.;
+P41 = 0. 0. 21.722817102956576;
+P42 = 0. 0. 576.;
+
+
+D01 = D ND01 P01 P08;
+D02 = D ND01 P02 P09;
+D03 = D ND01 P03 P10;
+D04 = D ND01 P04 P11;
+D05 = D ND01 P05 P12;
+C06 = C ND01 CENTR P06 P01 P13;
+C07 = C ND01 CENTR P07 P01 P14;
+D08 = D ND08 P08 P15;
+D09 = D ND08 P09 P16;
+D10 = D ND08 P10 P17;
+D11 = D ND08 P11 P18;
+D12 = D ND08 P12 P19;
+C13 = C ND08 CENTR P13 P01 P20;
+C14 = C ND08 CENTR P14 P01 P21;
+D15 = D ND15 P22 P23;
+C16 = C ND15 CENTR P24 P15 P25;
+C17 = C NP15P22 CENTR P17 P15 P25;
+D18 = D ND15 P15 P16;
+D19 = D NP15P22 P16 P23;
+C20 = C ND15 CENTR P26 P01 P30;
+C22 = C ND15 CENTR P27 P01 P31;
+C24 = C ND15 CENTR P28 P01 P32;
+C26 = C ND15 CENTR P29 P01 P33;
+C21 = C NP15P22 CENTR P18 P01 P30;
+C23 = C NP15P22 CENTR P19 P01 P31;
+C25 = C NP15P22 CENTR P20 P01 P32;
+C27 = C NP15P22 CENTR P21 P01 P33;
+
+TRAC (D01 ET D02 ET D03 ET D04 ET D05 ET C06 ET C07 ET D08 ET D09 ET D10 ET D11 ET D12 ET C13 ET C14 ET D15 ET C16 ET C17 ET D18 ET D19 ET C20 ET C22 ET C24 ET C26 ET C21 ET C23 ET C25 ET C27);
+
+S01 = D01 REGL ND15 D02;
+S02 = D02 REGL NP02P03 D03;
+S03 = D03 REGL NP03P04 D04;
+S04 = D04 REGL NP04P05 D05;
+S05 = D05 REGL NP05P06 C06;
+S06 = C06 REGL NP06P07 C07;
+S07 = D08 REGL ND15 D09;
+S08 = D09 REGL NP02P03 D10;
+S09 = D10 REGL NP03P04 D11;
+S10 = D11 REGL NP04P05 D12;
+S11 = D12 REGL NP05P06 C13;
+S12 = C13 REGL NP06P07 C14;
+S13 = D18 REGL NP15P22 D15;
+S14 = D15 REGL NP02P03 C16;
+S15 = D19 REGL NP02P03 C17;
+S16 = C16 REGL NP03P04 C20;
+S17 = C17 REGL NP03P04 C21;
+S18 = C20 REGL NP04P05 C22;
+S19 = C21 REGL NP04P05 C23;
+S20 = C22 REGL NP05P06 C24;
+S21 = C23 REGL NP05P06 C25;
+S22 = C24 REGL NP06P07 C26;
+S23 = C25 REGL NP06P07 C27;
+
+TRAC (S01 ET S02 ET S03 ET S04 ET S05 ET S06 ET S07 ET S08 ET S09 ET S10 ET S11 ET S12 ET S13 ET S14 ET S15 ET S16 ET S17 ET S18 ET S19 ET S20 ET S21 ET S22 ET S23);
+
+V01 = (S02 ET S03 ET S04 ET S08 ET S09 ET S10) VOLU NV01 TRAN P34;
+V02 = (S03 VOLU NV02 TRAN P35) PLUS P34;
+V03 = ((S02 ET S03 ET S04 ET S08 ET S09 ET S10) VOLU NV03 TRAN P34) PLUS P36;
+V04 = ((S01 ET S02 ET S03 ET S04 ET S05 ET S06 ET S07 ET S08 ET S09 ET S10 ET S11 ET S12 ET S13 ET S14 ET S15 ET S16 ET S17 ET S18 ET S19 ET S20 ET S21 ET S22 ET S23) VOLU NV04 TRAN P37) PLUS P38;
+V05 = ((S22 ET S23 ET S06 ET S12) VOLU NV05 TRAN P39) PLUS P40;
+V06 = ((S01 ET S02 ET S03 ET S04 ET S05 ET S06 ET S07 ET S08 ET S09 ET S10 ET S11 ET S12 ET S13 ET S14 ET S15 ET S16 ET S17 ET S18 ET S19 ET S20 ET S21 ET S22 ET S23) VOLU NV06 TRAN P41) PLUS P42;
+
+VQUART = V01 ET V02 ET V03 ET V04 ET V05 ET V06;
+
+TRAC VQUART;
+
+V2QUART = VQUART SYME PLAN P01 P02 P34;
+V3QUART = (VQUART ET V2QUART) SYME PLAN P01 P08 P34;
+
+VFIN = ELIM (V3QUART ET V2QUART ET VQUART) LEPSILON;
+
+TRAC VFIN;
+
+LIST VFIN;
+
+SURFCORVET = ENVELOPPE VFIN;
+
+LIST SURFCORVET;
+
+TRAC SURFCORVET;
+
+SFEETQUART = S02 ET S03 ET S04 ET S08 ET S09 ET S10;
+SFEET2QUART = SFEETQUART SYME PLAN P01 P02 P34;
+SFEET3QUART = (SFEETQUART ET SFEET2QUART) SYME PLAN P01 P08 P34;
+
+SFEET = SFEETQUART ET SFEET2QUART ET SFEET3QUART;
+
+TRAC SFEET;
+
+SURFBOTTOM = ELIM SURFCORVET (ELIM SURFCORVET SFEET LEPSILON) LEPSILON;
+
+TRAC SURFBOTTOM;
+
+TEMPS;
+
+* Material Property
+
+YOUNGMODULUS = (2.1E5);
+NUMODULUS = 0.3;
+RHOMATERIAL = 7.852E-9;
+
+MODL = MODE VFIN MECANIQUE CU20;
+
+MAT = MATE MODL YOUN YOUNGMODULUS NU NUMODULUS RHO RHOMATERIAL;
+
+K = RIGI MODL MAT;
+M = MASS MODL MAT;
+
+* Boundary Condition
+
+BC01 = BLOQ DEPL SURFBOTTOM;
+
+K = K ET BC01;
+
+* Search for Eigenmode of the structure
+
+LISTFQZ = PROG 12. 156. 183.;
+
+TEMPS;
+
+RESUL = VIBR PROC LISTFQZ K M;
+
+TEMPS;
+
+* RESUL = VIBR 'INTERVALLE' 5. 500. 'BASSE' 3 K M;
+
+* Displaying results
+
+SAUT 3 LIGN;
+MESS '----- Results -----';
+SAUT 3 LIGN;
+
+NATURALFQZ = TABLE; 
+MODEDEFO = TABLE;
+DEFORMATION = TABLE;
+
+I = 0;
+REPETER BLOC1 3;
+
+    I = I + 1;
+    NATURALFQZ.I = RESUL.MODES.I.FREQUENCE;
+    SAUT 1 LIGN;
+    MESS ' MODE ' I;
+    MESS ' ----------';
+    MESS ' Frequence calculee  :' NATURALFQZ.I 'Hz';
+    SAUT 1 LIGN;
+
+    MODEDEFO.I = RESUL . MODES . I . DEFORMEE_MODALE;
+    DEF0 = DEFO VFIN MODEDEFO.I 0.;
+    DEFORMATION.I = DEFO VFIN MODEDEFO.I BLEU;
+    TRAC (DEFORMATION.I ET DEF0);
+
+FIN BLOC1;
+
+* Save Result
+
+MODE1 = MODEDEFO.1;
+MODE2 = MODEDEFO.2;
+MODE3 = MODEDEFO.3;
+
+TEMPS;
+
+OPTI 'SORT' 'Corvet_Natural_Fqz.med';
+SORT 'MED' MODE1 MODE2 MODE3;
+
+FIN;
