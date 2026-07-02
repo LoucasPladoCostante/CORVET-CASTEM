@@ -1,3 +1,3 @@
 # CORVET-CASTEM
 
-Gibian code to compute the first three eigenmode of CORVET
+Gibian code to compute the first three eigenmodes of CORVET in air.
